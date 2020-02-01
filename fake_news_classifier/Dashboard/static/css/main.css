@@ -72,6 +72,18 @@ a:hover {
     height: 35px;
 }
 
+.logo {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1999;
+    background: #0f0f0f;
+}
+
 .headline {
     margin-top: 1rem;
 }
@@ -96,7 +108,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     padding: 15px;
-    background: #1d1d1d;
+    background: #0f0f0f;
 }
 
 .news-wrapper {
