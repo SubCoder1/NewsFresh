@@ -68,6 +68,10 @@ a:hover {
     color: mediumaquamarine;
 }
 
+.prod-logo {
+    height: 35px;
+}
+
 .headline {
     margin-top: 1rem;
 }

@@ -13,41 +13,46 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Barriecito&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'login/img/favicon.jpeg' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/prod-logo.png' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 	<title>Dashboard</title>
   </head>
   <body>
     <div class="container-fluid">
+        <div class="logo">
+          <img alt="logo" src="{% static 'img/prod-logo.png' %}" class="prod-logo"/>
+        </div>
         <h3 class="headline">News</h3>
         <div class="headline-border"></div>
         <div class="news-wrapper">
-          <div class="card post-card index-post-card">
-            <div class="card-body">
-              Nirbhaya case: No hanging on Feb 1 as Delhi court postpones execution of death warrants of all convicts till further order.
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-between align-items-center">
+          {% for n in news %}
+            <div class="card post-card index-post-card">
+              <div class="card-body">
+                {{ n.news }}
+              </div>
+              <div class="card-footer">
                   <div class="d-flex justify-content-between align-items-center">
-                      <div class="mr-0">
-                          <img src="{% static 'img/arnab.png' %}" alt="arnab_prof_pic" class="rounded-circle post-profile-img">
-                      </div>
-                      <div class="ml-2">
-                          <div class="h5 m-0 body">
-                            <a class="post_user_link" href="#">Arnab Ghosh</a>
-                          </div>
-                          <h6>5 mins ago</h6>
-                      </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="mr-0">
+                            <img src="{% static 'img/default.png' %}" alt="arnab_prof_pic" class="rounded-circle post-profile-img">
+                        </div>
+                        <div class="ml-2">
+                            <div class="h5 m-0 body">
+                              <a class="post_user_link" href="#">{{ n.user.username }}</a>
+                            </div>
+                            <h6>{{ n.date_time|timesince }} ago</h6>
+                        </div>
+                    </div>
+                    <div class="upvote-downvote-wrapper">
+                      <i class="fas fa-smile"></i>
+                      <h5 class="upvote">{{ n.news_conn.upvote_count }}</h5>
+                      <i class="fas fa-frown"></i>
+                      <h5 class="downvote">{{ n.news_conn.downvote_count }}</h5>
+                    </div>
                   </div>
-                  <div class="upvote-downvote-wrapper">
-                    <i class="fas fa-smile"></i>
-                    <h5 class="upvote">0</h5>
-                    <i class="fas fa-frown"></i>
-                    <h5 class="downvote">5</h5>
-                  </div>
-                </div>
+              </div>
             </div>
-          </div>
+          {% endfor %}
         </div>
     </div>
 
