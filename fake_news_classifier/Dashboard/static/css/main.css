@@ -1,0 +1,186 @@
+/*----------------- font imports-----------------*/
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+}
+  
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+}
+/* ----------------------------------------------- */
+
+/* ----------------- init ------------------- */
+
+* {
+	margin: 0px; 
+	padding: 0px; 
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: Poppins-Regular, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color:#1d1d1d black;
+}
+
+::selection {
+    background: black;
+    color: white;
+}
+
+button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+h6 { font-size: 10px; }
+
+a {
+	font-family: Poppins-Regular;
+	font-size: 14px;
+	line-height: 1.7;
+	color: aqua;
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+a:hover {
+    color: mediumaquamarine;
+}
+
+.headline {
+    margin-top: 1rem;
+}
+
+.headline-border {
+    border: 1.2px solid mediumslateblue;
+    width: 2rem;
+    font-size: 30px;
+}
+
+/*------------------ container ------------------*/
+.container-fluid {
+    width: 100%;  
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: #1d1d1d;
+}
+
+.news-wrapper {
+    margin-top: 2rem;
+    display: flex;
+    width: 615px;
+    height: auto;
+    flex-direction: column;
+    background: transparent;
+    flex-wrap: nowrap;
+}
+/* ----------------------------------------------- */
+
+/* ----------------- post card ------------------- */
+.post-card {
+    background: #8E2DE2;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    border-radius: 0;
+    border: 0;
+    -webkit-border-radius: 0;
+    -ms-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+}
+
+.index-post-card {
+    width: 614px; 
+    margin-bottom: 15px;
+    border-radius: 7px;
+}
+
+.mr-0 {
+    position: relative;
+    top: 2px;
+}
+
+.post-profile-img {
+    height: 33px;
+    position: relative;
+    bottom: 3px;
+}
+
+.card-footer {
+    background-color: transparent;
+    border-top: 0;
+}
+
+.fa-smile, .fa-frown {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.fa-smile {
+    color: mediumspringgreen;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.fa-smile:hover {
+    font-weight: 900;
+    color: mediumspringgreen;
+    transform: scale(1.2);
+}
+
+.fa-frown {
+    color: #ff9b00;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.fa-frown:hover {
+    font-weight: 900;
+    color: #ff9b00;
+    transform: scale(1.2);
+}
+
+.upvote-downvote-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.upvote, .downvote {
+    font-size: 15px;
+    position: relative;
+    top: 3px;
+    margin-right: 9px;
+    margin-left: 4px;
+}
