@@ -1,3 +1,5 @@
 django
 pytz
 Pillow
+django-extensions
+celery
