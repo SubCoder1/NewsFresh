@@ -5,3 +5,4 @@ Pillow
 django-extensions
 pandas
 numpy
+sklearn
