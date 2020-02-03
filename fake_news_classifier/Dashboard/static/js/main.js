@@ -16,6 +16,7 @@ $(document).ready(function() {
     }
     var csrftoken = getCookie('csrftoken');
 
+    // JS code to send upvote for a specific news
     $('.fa-smile').on('click', function(event) {
         event.preventDefault();
         var $upvote = $(this);

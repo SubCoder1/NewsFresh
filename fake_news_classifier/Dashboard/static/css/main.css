@@ -86,8 +86,17 @@ a:hover {
 
 .headline-border {
     border: 1.2px solid mediumspringgreen;
-    width: 2rem;
+    width: 0rem;
     font-size: 30px;
+    animation-name: spread;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes spread {
+    from    { width: 0rem; }
+    to      { width: 2rem; }
 }
 
 /*------------------ container ------------------*/
@@ -136,6 +145,16 @@ a:hover {
     width: 614px; 
     margin-bottom: 15px;
     border-radius: 7px;
+    margin-top: 1.5rem;
+    animation-name: stack-up;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes stack-up {
+    from    { margin-top: 1.5rem; }
+    to      { margin-top: 0rem; }
 }
 
 .mr-0 {
