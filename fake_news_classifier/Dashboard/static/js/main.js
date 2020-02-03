@@ -37,4 +37,26 @@ $(document).ready(function() {
             }
         });
     });
+
+    // JS code to send downvote for a specific news
+    $('.fa-frown').on('click', function(event) {
+        event.preventDefault();
+        var $downvote = $(this);
+        var news_id = $(this).parent().attr('id');
+        $.ajax({
+            url : '',
+            type : 'POST',
+            data : {
+                csrfmiddlewaretoken : csrftoken,
+                activity : 'downvote',
+                news_id : news_id,
+            },
+            complete : function(response) {
+                if (response.responseJSON == 'valid') {
+                    var downvote_count = parseInt($downvote.siblings('.downvote').text(), 10) + 1;
+                    $downvote.siblings('.downvote').text(downvote_count.toString());
+                }
+            }
+        });
+    });
 });
