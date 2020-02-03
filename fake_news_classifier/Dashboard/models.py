@@ -15,7 +15,8 @@ class NewsVoteModel(models.Model):
 
 class NewsModel(models.Model):
     news_id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True)
-    news = models.TextField(unique=True, blank=False)
+    news = models.TextField(unique=True, blank=False, default='')
+    news_link = models.TextField(blank=False)
     date_time = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1, related_name='news_posted')
     news_conn = models.OneToOneField(NewsVoteModel, on_delete=models.CASCADE, default=1, related_name='news_model')
