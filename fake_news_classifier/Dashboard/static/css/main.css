@@ -86,8 +86,17 @@ a:hover {
 
 .headline-border {
     border: 1.2px solid mediumspringgreen;
-    width: 2rem;
+    width: 0rem;
     font-size: 30px;
+    animation-name: spread;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes spread {
+    from    { width: 0rem; }
+    to      { width: 2rem; }
 }
 
 /*------------------ container ------------------*/
