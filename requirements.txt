@@ -3,4 +3,5 @@ django
 pytz
 Pillow
 django-extensions
-celery
+pandas
+numpy
