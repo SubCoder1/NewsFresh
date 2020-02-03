@@ -30,7 +30,7 @@
           {% for n in news %}
             <div class="card post-card index-post-card">
               <div class="card-body">
-                {{ n.news }} . . .
+                {{ n.news|truncatechars:310 }}
                 <br/>
                 <a href={{n.news_link}}>read more</a>
               </div>
