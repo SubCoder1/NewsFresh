@@ -1,0 +1,78 @@
+<html>
+
+<body>
+    <div class="page_layout">
+
+        <div class="clf_border">
+
+            <h2><p class = "borderexample">Fake news classifier</p></h2>
+
+            <p class="bodytext">You are reading the news, and might wonder:
+                <br><i>Is this fake news? Or a trustful article?</i>
+                <br>
+                <br>Now you can find out with this fake news classifier.
+                <br> Just by pasting the content of an article. </p>
+
+            <form action="{{url_for('predict')}}" method="POST">
+                <p class="pagetitles"> Enter the article:
+                    <p>
+                        <textarea name="article" , ID='article' , rows="5" cols="50" style="font-size:12pt;height:220px;width:350px;" , placeholder="Insert here"></textarea>
+                        <br>
+                        <br>
+                        <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<style type="text/css">
+    form {
+        margin: 0 auto;
+        width: auto;
+        text-align: center;
+    }
+    
+    .page_layout {
+        margin: 0 auto;
+        width: 30%;
+    }
+    
+    .clf_border {
+        border-radius: 20px;
+        margin: 5px;
+        border-style: solid;
+        border-width: thin;
+        display: inline-block;
+        border-color: #D3D3D3;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .borderexample {
+        border-style: solid;
+        border-radius: 10px;
+        border-color: #287EC7;
+        width: 360px;
+        background: #287EC7;
+        color: white;
+        font-family: 'Helvetica Neue', sans-serif;
+        text-align: center;
+        font-weight: normal;
+        font-size: 30px;
+        margin: 0 auto;
+    }
+    
+    .bodytext {
+        font-family: 'Helvetica Neue', sans-serif;
+        width: 360px;
+        margin: 0 auto;
+    }
+    
+    .pagetitles {
+        font-weight: bold;
+        font-family: 'Helvetica Neue', sans-serif;
+    }
+</style>

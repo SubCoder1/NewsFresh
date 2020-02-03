@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<script>
+    function goBack() {
+        window.history.back()
+    }
+</script>
+
+<div class="body_result">
+
+    <div class="result_border">
+
+        <h2><p class = borderexample> Result </p></h2>
+
+        <body>
+
+            {% if prediction == 1%}
+
+            <p class='no_trust'>It is probably fake news, or an opinion piece.
+                <br>
+                <br> Probability of {{ proba }}
+            </p>
+
+            {% elif prediction == 0%}
+            <p class='trust'>It is most likely a trustful article
+                <br>
+                <br> Probability of {{ proba }}
+            </p>
+
+            {% endif %}
+
+            <button onclick="goBack()">Test another article</button>
+
+        </body>
+    </div>
+</div>
+
+</html>
+
+<style type="text/css">
+    .trust {
+        color: #9ACD32;
+        font-weight: bold;
+    }
+    
+    .result_border {
+        border-radius: 20px;
+        margin: 5px;
+        border-style: solid;
+        border-width: thin;
+        display: inline-block;
+        border-color: #D3D3D3;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 8px;
+    }
+    
+    .borderexample {
+        border-style: solid;
+        border-radius: 10px;
+        border-color: #287EC7;
+        width: 360px;
+        background: #287EC7;
+        color: white;
+        font-family: 'Helvetica Neue', sans-serif;
+        text-align: center;
+        font-weight: normal;
+        font-size: 30px;
+        margin: 0 auto;
+    }
+    
+    .no_trust {
+        color: red;
+        font-weight: bold;
+    }
+    
+    .body_result {
+        text-align: center;
+        font-weight: normal;
+        margin: 0 auto;
+    }
+</style>
