@@ -30,7 +30,9 @@
           {% for n in news %}
             <div class="card post-card index-post-card">
               <div class="card-body">
-                {{ n.news }}
+                {{ n.news }} . . .
+                <br/>
+                <a href={{n.news_link}}>read more</a>
               </div>
               <div class="card-footer">
                   <div class="d-flex justify-content-between align-items-center">

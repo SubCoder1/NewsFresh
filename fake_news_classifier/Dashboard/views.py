@@ -37,23 +37,27 @@ def DashboardView(request):
                 news_vote_obj.downvote_count = F('downvote_count') + 1
                 news_vote_obj.save()
                 result = 'valid'
-            # to be coded
-            """list_comment = [comment]
 
-            list_comment = clean_article(list_comment)
-            list_comment = [list_comment]
-            vect = bow.transform(list_comment)
+            news_model_obj = NewsModel.objects.filter(news_id=news_id).first()
+            news_vote_obj = news_model_obj.news_conn
+            if news_vote_obj.downvote_count > 3:
+                list_comment = [news_model_obj.news]
 
-            vect = pd.DataFrame(vect.toarray())
-            vect.columns = bow.get_feature_names()
+                list_comment = clean_article(list_comment)
+                list_comment = [list_comment]
+                vect = bow.transform(list_comment)
 
-            prediction_array = model.predict(vect)
-            proba_array = model.predict_proba(vect)
+                vect = pd.DataFrame(vect.toarray())
+                vect.columns = bow.get_feature_names()
 
-            maxProba = np.amax(proba_array)
-            maxProba = format(maxProba, ".2%")
+                prediction_array = model.predict(vect)
+                proba_array = model.predict_proba(vect)
 
-            print(maxProba)"""
+                maxProba = np.amax(proba_array)
+                maxProba = format(maxProba, ".2%")
+
+                print(maxProba)
+                
         return HttpResponse(json.dumps(result), content_type="application/json")
     news = NewsModel.objects.select_related('news_conn')
     return render(request, 'dashboard.html', {'news':news})
