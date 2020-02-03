@@ -57,7 +57,13 @@ def DashboardView(request):
                 maxProba = format(maxProba, ".2%")
 
                 print(maxProba)
-                
+                if 0 in prediction_array:
+                    print("this story is real")
+                    news_model_obj.fake = False
+                else:
+                    print("this story is fake")
+                    news_model_obj.fake = True
+                news_model_obj.save()
         return HttpResponse(json.dumps(result), content_type="application/json")
     news = NewsModel.objects.select_related('news_conn')
     return render(request, 'dashboard.html', {'news':news})
