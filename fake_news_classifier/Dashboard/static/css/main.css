@@ -136,6 +136,16 @@ a:hover {
     width: 614px; 
     margin-bottom: 15px;
     border-radius: 7px;
+    margin-top: 1.5rem;
+    animation-name: stack-up;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes stack-up {
+    from    { margin-top: 1.5rem; }
+    to      { margin-top: 0rem; }
 }
 
 .mr-0 {
