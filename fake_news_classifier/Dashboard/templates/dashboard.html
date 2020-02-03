@@ -20,7 +20,9 @@
   <body>
     <div class="container-fluid">
         <div class="logo">
-          <img alt="logo" src="{% static 'img/prod-logo.png' %}" class="prod-logo"/>
+          <a href="{% url 'dashboard_view' %}">
+            <img alt="logo" src="{% static 'img/prod-logo.png' %}" class="prod-logo"/>
+          </a>
         </div>
         <h3 class="headline">News</h3>
         <div class="headline-border"></div>
