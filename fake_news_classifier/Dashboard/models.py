@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 # Create your models here.
 class NewsVoteModel(models.Model):
@@ -13,6 +14,7 @@ class NewsVoteModel(models.Model):
         return f"upvote: {self.upvote_count}, downvote: {self.downvote_count}"
 
 class NewsModel(models.Model):
+    news_id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True)
     news = models.TextField(unique=True, blank=False)
     date_time = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1, related_name='news_posted')
