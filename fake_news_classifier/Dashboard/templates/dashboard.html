@@ -29,10 +29,15 @@
         <div class="news-wrapper">
           {% for n in news %}
             <div class="card post-card index-post-card">
+              {% if n.news_img_link %}
+              <div class="card-body" style="background-image: linear-gradient(rgba(80, 55, 174, 0.5),rgba(0, 0, 0, 0.5)), url({{n.news_img_link}});">
+              {% else %}
               <div class="card-body">
-                {{ n.news|truncatechars:310 }}
-                <br/>
+              {% endif %}
+                <h5 style="font-size: 16px;">{{ n.news|truncatechars:310 }}</h5>
                 <a href={{n.news_link}}>read more</a>
+                <br/>
+                <a href="#">related stories</a>
               </div>
               <div class="card-footer">
                   <div class="d-flex justify-content-between align-items-center">
@@ -48,6 +53,13 @@
                         </div>
                     </div>
                     <div class="upvote-downvote-wrapper" id={{n.news_id}}>
+                      {% if n.fake %}
+                        <i class="fas fa-skull-crossbones"></i>
+                        <h5 class="accuracy">{{ n.accuracy }}%</h5>
+                      {% elif n.news_conn.downvote_count > 3 %}
+                        <i class="far fa-check-circle"></i>
+                        <h5 class="accuracy">{{ n.accuracy }}%</h5>
+                      {% endif %}
                       {% csrf_token %}
                       <i class="fas fa-smile"></i>
                       <h5 class="upvote">{{ n.news_conn.upvote_count }}</h5>

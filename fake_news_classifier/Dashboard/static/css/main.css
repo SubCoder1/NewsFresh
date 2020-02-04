@@ -55,7 +55,6 @@ h6 { font-size: 10px; }
 a {
 	font-family: Poppins-Regular;
 	font-size: 14px;
-	line-height: 1.7;
 	color: aqua;
 	margin: 0px;
 	transition: all 0.4s;
@@ -168,6 +167,35 @@ a:hover {
     bottom: 3px;
 }
 
+.card-body {
+    text-align: justify;
+    border-radius: 7px 7px 0 0;
+    animation-name: slide-down;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide-down {
+    from    { clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%); }
+    to      { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+}
+
+.news_img {
+    width: 100%;
+    height: 74%;
+    display: block;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    border-radius: 7px 7px 0rem 0px;
+}
+
 .card-footer {
     background-color: transparent;
     border-top: 0;
@@ -176,6 +204,16 @@ a:hover {
 .fa-smile, .fa-frown {
     font-size: 24px;
     font-weight: 500;
+}
+
+.fa-skull-crossbones {
+    font-size: 25px;
+    color: black;
+}
+
+.fa-check-circle {
+    font-size: 24px;
+    color: aquamarine;
 }
 
 .fa-smile {
@@ -208,10 +246,16 @@ a:hover {
     flex-wrap: nowrap;
 }
 
-.upvote, .downvote {
+.upvote, .downvote, .accuracy {
     font-size: 15px;
     position: relative;
     top: 3px;
     margin-right: 9px;
     margin-left: 4px;
+}
+
+@media only screen and (max-width: 767px) {
+    .news-wrapper, .index-post-card {
+        width: 100%;
+    }
 }
