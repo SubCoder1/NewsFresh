@@ -1,0 +1,19 @@
+body {
+    min-width: 300px;
+}
+
+.buttonRow {
+    padding: 5px;
+}
+
+.Buttons {
+    width: 143px;
+}
+
+.Buttons:hover {
+    cursor: pointer;
+}
+
+#title {
+    margin-top: 10px;
+}

@@ -1,0 +1,50 @@
+<h1>Articles</h1>
+  <div  id="container">
+
+<table>
+<th>All Articles</th>
+  {{#each articles}}
+  
+  <tr>
+    <td>{{articleID}}</td><td>{{link}}</td>
+  </tr>
+  {{/each}}
+</table>
+<br>
+
+<div class="querybox">
+			<!-- Create Client Block -->
+			<fieldset>
+				<legend>Enter a URL</legend>
+				<label>Link: <input type="text" id="link" required></label>
+        <input type="button" id="search_btn" value="Search" onclick="getLink()">
+			</fieldset>
+      </div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>
+
+function getLink()
+{
+  var link = $('#link').val();
+
+  var req = new XMLHttpRequest();
+  req.open('GET', '/get-ratio'+"?link="+link, false);
+  req.send();
+  var response = JSON.parse(req.responseText);
+  var data = response[0];
+  var rate = data.rate;
+  console.log(rate);
+}
+
+</script>
+

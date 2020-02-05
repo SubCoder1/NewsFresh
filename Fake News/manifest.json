@@ -1,0 +1,27 @@
+{
+  "manifest_version":2,
+
+  "name":"Report Fake News",
+  "description":"Allows a user to report valid or invalid news stories",
+  "version":"1.0",
+
+  "browser_action": {
+    "default_icon":"imgs/icon.png",
+    "default_title":"Report News",
+    "default_popup":"index.html"
+  },
+
+  "background":{
+    "scripts":["app.js"]
+  },
+
+  "permissions": [
+    "http://localhost/*",
+    "storage",
+    "tabs",
+    "notifications"
+  ],
+
+  "minimum_chrome_version": "28"
+
+}
