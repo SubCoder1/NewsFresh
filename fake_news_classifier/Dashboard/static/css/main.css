@@ -214,11 +214,30 @@ textarea {
 .fa-skull-crossbones {
     font-size: 25px;
     color: black;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.fa-skull-crossbones:hover {
+    transform: scale(1.2);
+}
+
+.pop-up {
+    font-size: 40px;
+    color: mediumorchid;
+    margin-bottom: 1rem;
 }
 
 .fa-check-circle {
     font-size: 24px;
     color: aquamarine;
+    font-weight: 700;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.fa-check-circle:hover {
+    transform: scale(1.2);
 }
 
 .fa-smile {
