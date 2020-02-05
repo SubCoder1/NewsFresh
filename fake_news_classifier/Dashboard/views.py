@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse
 from django.db import transaction
 from django.db.models import F
-from Dashboard.models import NewsModel
+from django.contrib.auth.models import User
+from Dashboard.models import NewsModel, NewsVoteModel
 import json, re, os, pickle
 import pandas as pd
 import numpy as np
@@ -19,6 +20,21 @@ def clean_article(article):
 
 # Create your views here.
 def DashboardView(request):
+    if request.POST.get('news_link', None) is not None:
+        try:
+            url = request.POST['news_link']
+            article = Article(url)
+            article.download()
+            article.parse()
+            user = User.objects.first()
+            if article.text is not '':
+                news_vote_model = NewsVoteModel.objects.create()
+                news_model = NewsModel.objects.create(news_link=url, news=article.text, 
+                news_img_link=article.top_image, news_conn=news_vote_model)
+            else:
+                print("the article could not be scraped")
+        except Exception as e:
+            print(e)
     if request.is_ajax():
         activity = request.POST.get('activity')
         news_id = request.POST.get('news_id')
