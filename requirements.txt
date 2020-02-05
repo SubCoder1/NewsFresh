@@ -5,4 +5,5 @@ django-extensions
 pandas
 numpy
 sklearn
+nltk
 newspaper3k
