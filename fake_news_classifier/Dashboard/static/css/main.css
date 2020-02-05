@@ -261,7 +261,7 @@ textarea {
 
 /* ----------------- article-add-ico ------------------- */
 .article-add-link {
-    position: absolute;
+    position: fixed;
     right: 13%;
     bottom: 5%;
     border-radius: 50% !important;
@@ -363,7 +363,7 @@ textarea {
     height: 70%;
     margin-top: 0.5rem;
     height: 280px;
-    border-bottom: 2px solid mediumslateblue;
+    border-bottom: 2px solid #6a29f2;
 }
 
 .article:focus {
