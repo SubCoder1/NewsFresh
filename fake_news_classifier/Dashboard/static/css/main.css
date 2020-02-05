@@ -67,6 +67,10 @@ a:hover {
     color: mediumaquamarine;
 }
 
+textarea {
+    scrollbar-color: #1d1d1d black;
+}
+
 .prod-logo {
     height: 35px;
 }
@@ -79,7 +83,7 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1999;
+    z-index: 1000;
     background: #0f0f0f;
 }
 
@@ -253,6 +257,138 @@ a:hover {
     margin-right: 9px;
     margin-left: 4px;
 }
+/* ----------------------------------------------- */
+
+/* ----------------- article-add-ico ------------------- */
+.article-add-link {
+    position: absolute;
+    right: 13%;
+    bottom: 5%;
+    border-radius: 50% !important;
+    height: 60px;
+    width: 60px;
+    background: transparent;
+    border: 2px solid mediumspringgreen;
+    transition: all 0.4s;
+}
+
+.fa-plus {
+    font-size: 18px;
+    color: mediumspringgreen;
+    transition: all 0.4s;
+}
+
+.article-add-link:hover {
+    background: transparent;
+    border: 2px solid mediumslateblue;
+    box-shadow: none;
+}
+
+.article-add-link:focus {
+    background: transparent;
+    box-shadow: none;
+    outline: 0;
+    border: 2px solid mediumspringgreen;
+}
+
+.article-add-link:hover .fa-plus {
+    color: mediumslateblue;
+    transform: rotate(45deg);
+}
+
+.modal-backdrop.show {
+    opacity: 0.9;
+}
+
+.close, .close:focus {
+    color: white;
+    outline: none;
+    border: none;
+    position: relative;
+    top: 1px;
+}
+
+.form-control {
+    border-radius: 0rem;
+    -webkit-border-radius: 0rem;
+    -ms-border-radius: 0rem;
+    -moz-border-radius: 0rem;
+    -o-border-radius: 0rem;
+    background-color: #1d1d1d;
+    color: white;
+    border: none;
+    padding: 0;
+    position: absolute;
+    line-height: 1.0;
+}
+
+.modal-content {
+    background: #1d1d1d;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
+
+.modal-body {
+    height: 400px;
+    overflow-x: auto;
+}
+
+.modal-header {
+    border: none;
+    padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.modal-footer {
+    justify-content: center;
+    border-top: none;
+}
+
+.headline {
+    font-size: 22px;
+    float: left;
+}
+
+.article {
+    position: absolute;
+    box-sizing: border-box;
+    width: 95%;
+    resize: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 300;
+    overflow: hidden;
+    height: 70%;
+    margin-top: 0.5rem;
+    height: 280px;
+    border-bottom: 2px solid mediumslateblue;
+}
+
+.article:focus {
+    background: transparent;
+    color: white;
+    outline: 0;
+    box-shadow: none;
+    border-bottom: 2px solid mediumslateblue;
+}
+
+.form-group { height: 280px; }
+
+.article-post-btn {
+    width: 85px;
+    height: 40px;
+    background: transparent;
+    border: 1.2px solid #6a29f2;
+    border-radius: 2rem;
+}
+
+.article-post-btn:hover {
+    background: #6a29f2;
+    border: 1.2px solid #6a29f2;
+}
+/* ----------------------------------------------- */
 
 @media only screen and (max-width: 767px) {
     .news-wrapper, .index-post-card {
