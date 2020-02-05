@@ -1,6 +1,6 @@
 # NewsFresh
 NewsFresh is just like RottenTomatoes for news!
-Users can read, rate, post news & also, keep themselves aware of fake news :simple_smile:
+Users can read, rate, post news & also, keep themselves aware of fake news :smile:
 ### How to Install
 First & Foremost, 
 Python3 or above should be properly installed in your system.
