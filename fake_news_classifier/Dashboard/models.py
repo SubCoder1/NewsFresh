@@ -25,5 +25,8 @@ class NewsModel(models.Model):
     news_conn = models.OneToOneField(NewsVoteModel, on_delete=models.CASCADE, default=1, related_name='news_model')
     objects = models.Manager()
 
+    class Meta:
+        ordering = ['-date_time']
+
     def __str__(self):
         return self.user.username + " " + str(self.date_time)
