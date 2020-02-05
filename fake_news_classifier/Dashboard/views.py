@@ -23,16 +23,19 @@ def DashboardView(request):
     if request.POST.get('news_link', None) is not None:
         try:
             url = request.POST['news_link']
-            article = Article(url)
-            article.download()
-            article.parse()
-            user = User.objects.first()
-            if article.text is not '':
-                news_vote_model = NewsVoteModel.objects.create()
-                news_model = NewsModel.objects.create(news_link=url, news=article.text, 
-                news_img_link=article.top_image, news_conn=news_vote_model)
+            if not NewsModel.objects.filter(news_link=url).exists():
+                article = Article(url)
+                article.download()
+                article.parse()
+                user = User.objects.first()
+                if article.text is not '':
+                    news_vote_model = NewsVoteModel.objects.create()
+                    news_model = NewsModel.objects.create(news_link=url, news=article.text, 
+                    news_img_link=article.top_image, news_conn=news_vote_model)
+                else:
+                    print("the article could not be scraped")
             else:
-                print("the article could not be scraped")
+                print("news already exists in db")
         except Exception as e:
             print(e)
     if request.is_ajax():
