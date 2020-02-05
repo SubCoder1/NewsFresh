@@ -63,6 +63,8 @@ def DashboardView(request):
                 else:
                     print("this story is fake")
                     news_model_obj.fake = True
+                
+                news_model_obj.accuracy = float(str(maxProba).replace('%', ''))
                 news_model_obj.save()
         return HttpResponse(json.dumps(result), content_type="application/json")
     news = NewsModel.objects.select_related('news_conn')
