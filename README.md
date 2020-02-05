@@ -1,1 +1,1 @@
-# Fake-News-Classifier
+# NewsFresh
