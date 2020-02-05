@@ -178,6 +178,7 @@ textarea {
     animation-duration: 0.4s;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
+    width: 100.1%;
 }
 
 @keyframes slide-down {
