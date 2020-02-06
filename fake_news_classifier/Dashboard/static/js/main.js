@@ -1,8 +1,4 @@
 $(document).ready(function() {
-    $('a').on('click', function(event) {
-        event.preventDefault();
-    });
-
     // JS Function to accquire the csrftoken
     function getCookie(name) {
         var cookieValue = null;
