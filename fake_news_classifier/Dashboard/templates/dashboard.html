@@ -70,7 +70,7 @@
                           </div>
                         </div>
                         <h5 class="accuracy">{{ n.accuracy }}%</h5>
-                      {% elif n.news_conn.downvote_count > 3 %}
+                      {% else %}
                         <a href="#" name="show-news-report" data-toggle="modal" data-target="#report-{{n.news_id}}">
                           <i class="far fa-check-circle"></i>
                         </a>
