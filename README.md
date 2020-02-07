@@ -34,6 +34,16 @@ exit()
 ```
 ```exit()``` will get you out of your Python CLI to where you were.
 
+If you've reached this step, the installation of this project should be completed by now.
+DB migrations are needed for any kinda backend to work properly, so use this set of commands :- 
+```
+python manage.py makemigrations
+python manage.py migrate
+python manage.py migrate --run-syncdb
+python manage.py createsuperuser
+```
+Note :- For linux users, use python3 instead of python
+
 Finally, change directory to *fake_news_classifier* using ```cd fake_news_classifier```, then use command 
 
 Windows -> 
