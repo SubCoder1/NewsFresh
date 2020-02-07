@@ -119,6 +119,13 @@ textarea {
     background: #0f0f0f;
 }
 
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+}
+
 .news-wrapper {
     margin-top: 2rem;
     display: flex;
@@ -127,6 +134,13 @@ textarea {
     flex-direction: column;
     background: transparent;
     flex-wrap: nowrap;
+}
+
+.profile-wrapper {
+    width: 400px;
+    margin-top: 2rem;
+    margin-left: 3rem;
+    text-align: center;
 }
 /* ----------------------------------------------- */
 
@@ -279,10 +293,51 @@ textarea {
 }
 /* ----------------------------------------------- */
 
+/* ----------------- profile-wrapper ------------------- */
+.prof-wrap-sticky {
+    position: sticky;
+    top: 55px;
+    border-radius: 1rem;
+    background: linear-gradient(to right, #4A00E0, #8E2DE2);
+    animation-name: stack-up;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+.profile-img {
+    height: 110px;
+    position: relative;
+    margin-top: 1rem;
+}
+
+.profile-name {
+    font-size: 21px;
+}
+
+.user-details-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.achievements-section {
+    text-align: center;
+    color: white;
+}
+
+.level {
+    color: #1d1d1d; 
+    font-weight: bold; 
+    font-size: 40px;
+}
+
+/* ----------------------------------------------- */
+
 /* ----------------- article-add-ico ------------------- */
 .article-add-link {
     position: fixed;
-    right: 13%;
+    right: 15%;
     bottom: 5%;
     border-radius: 50% !important;
     height: 60px;
@@ -412,7 +467,21 @@ textarea {
 /* ----------------------------------------------- */
 
 @media only screen and (max-width: 767px) {
-    .news-wrapper, .index-post-card {
+    .news-wrapper, .index-post-card, .profile-wrapper {
         width: 100%;
+    }
+
+    .profile-wrapper {
+        margin-left: 0rem;
+    }
+
+    .level {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 1024px) { 
+    .profile-wrapper {
+        margin-left: 0rem;
     }
 }

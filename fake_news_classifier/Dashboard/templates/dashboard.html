@@ -26,78 +26,93 @@
         </div>
         <h3 class="headline">NewsFresh</h3>
         <div class="headline-border"></div>
-        <div class="news-wrapper">
-          {% for n in news %}
-            <div class="card post-card index-post-card">
-              {% if n.news_img_link %}
-              <div class="card-body" style="background-image: linear-gradient(rgba(80, 55, 174, 0.5),rgba(0, 0, 0, 0.5)), url({{n.news_img_link}});">
-              {% else %}
-              <div class="card-body">
-              {% endif %}
-                <h5 style="font-size: 16px;">{{ n.news|truncatechars:310 }}</h5>
-                <a href={{n.news_link}} target="_blank">read more</a>
-                <br/>
-                <a href="#">related stories</a>
-              </div>
-              <div class="card-footer">
-                  <div class="d-flex justify-content-between align-items-center">
+        <div class="dashboard-wrapper">
+          <div class="news-wrapper">
+            {% for n in news %}
+              <div class="card post-card index-post-card">
+                {% if n.news_img_link %}
+                <div class="card-body" style="background-image: linear-gradient(rgba(80, 55, 174, 0.5),rgba(0, 0, 0, 0.5)), url({{n.news_img_link}});">
+                {% else %}
+                <div class="card-body">
+                {% endif %}
+                  <h5 style="font-size: 16px;">{{ n.news|truncatechars:310 }}</h5>
+                  <a href={{n.news_link}} target="_blank">read more</a>
+                  <br/>
+                  <a href="#">related stories</a>
+                </div>
+                <div class="card-footer">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="mr-0">
-                            <img src="{% static 'img/default.png' %}" alt="arnab_prof_pic" class="rounded-circle post-profile-img">
-                        </div>
-                        <div class="ml-2">
-                            <div class="h5 m-0 body">
-                              <a class="post_user_link" href="#">{{ n.user.username }}</a>
-                            </div>
-                            <h6>{{ n.date_time|timesince }} ago</h6>
-                        </div>
-                    </div>
-                    <div class="upvote-downvote-wrapper" id={{n.news_id}}>
-                      {% if n.fake %}
-                        <a href="#" name="show-news-report" data-toggle="modal" data-target="#report-{{n.news_id}}">
-                          <i class="fas fa-skull-crossbones"></i>
-                        </a>
-                        <div class="modal fade" id="report-{{n.news_id}}" tabindex="-1" role="dialog" aria-labelledby="report-title" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                              <div class="modal-body" style="height: auto; text-align: center;">
-                                <i class="fas pop-up fa-skull-crossbones"></i>
-                                <br/>
-                                The Probability of this news being fake is
-                                <h2 style="color: mediumslateblue;">{{n.accuracy}}%</h2>
+                      <div class="d-flex justify-content-between align-items-center">
+                          <div class="mr-0">
+                              <img src="{% static 'img/default.png' %}" alt="arnab_prof_pic" class="rounded-circle post-profile-img">
+                          </div>
+                          <div class="ml-2">
+                              <div class="h5 m-0 body">
+                                <a class="post_user_link" href="#">{{ n.user.username }}</a>
+                              </div>
+                              <h6>{{ n.date_time|timesince }} ago</h6>
+                          </div>
+                      </div>
+                      <div class="upvote-downvote-wrapper" id={{n.news_id}}>
+                        {% if n.fake %}
+                          <a href="#" name="show-news-report" data-toggle="modal" data-target="#report-{{n.news_id}}">
+                            <i class="fas fa-skull-crossbones"></i>
+                          </a>
+                          <div class="modal fade" id="report-{{n.news_id}}" tabindex="-1" role="dialog" aria-labelledby="report-title" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-body" style="height: auto; text-align: center;">
+                                  <i class="fas pop-up fa-skull-crossbones"></i>
+                                  <br/>
+                                  The Probability of this news being fake is
+                                  <h2 style="color: mediumslateblue;">{{n.accuracy}}%</h2>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <h5 class="accuracy">{{ n.accuracy }}%</h5>
-                      {% else %}
-                        <a href="#" name="show-news-report" data-toggle="modal" data-target="#report-{{n.news_id}}">
-                          <i class="far fa-check-circle"></i>
-                        </a>
-                        <div class="modal fade" id="report-{{n.news_id}}" tabindex="-1" role="dialog" aria-labelledby="report-title" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                              <div class="modal-body" style="height: auto; text-align: center;">
-                                <i class="far pop-up fa-check-circle" style="font-size: 40px;"></i>
-                                <br/>
-                                The Probability of this news being real is
-                                <h3 style="color: mediumspringgreen;">{{n.accuracy}}%</h3>
+                          <h5 class="accuracy">{{ n.accuracy }}%</h5>
+                        {% else %}
+                          <a href="#" name="show-news-report" data-toggle="modal" data-target="#report-{{n.news_id}}">
+                            <i class="far fa-check-circle"></i>
+                          </a>
+                          <div class="modal fade" id="report-{{n.news_id}}" tabindex="-1" role="dialog" aria-labelledby="report-title" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-body" style="height: auto; text-align: center;">
+                                  <i class="far pop-up fa-check-circle" style="font-size: 40px;"></i>
+                                  <br/>
+                                  The Probability of this news being real is
+                                  <h3 style="color: mediumspringgreen;">{{n.accuracy}}%</h3>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <h5 class="accuracy">{{ n.accuracy }}%</h5>
-                      {% endif %}
-                      {% csrf_token %}
-                      <i class="fas fa-smile"></i>
-                      <h5 class="upvote">{{ n.news_conn.upvote_count }}</h5>
-                      <i class="fas fa-frown"></i>
-                      <h5 class="downvote">{{ n.news_conn.downvote_count }}</h5>
+                          <h5 class="accuracy">{{ n.accuracy }}%</h5>
+                        {% endif %}
+                        {% csrf_token %}
+                        <i class="fas fa-smile"></i>
+                        <h5 class="upvote">{{ n.news_conn.upvote_count }}</h5>
+                        <i class="fas fa-frown"></i>
+                        <h5 class="downvote">{{ n.news_conn.downvote_count }}</h5>
+                      </div>
                     </div>
-                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="profile-wrapper">
+            <div class="prof-wrap-sticky">
+              <img src="/static/img/default.png" alt="default_prof_pic" class="rounded-circle profile-img"/>
+              <h4 class="profile-name">Arnab Ghosh</h4>
+              <div class="user-details-wrapper">
+                <div class="achievements-section">
+                  Level
+                  <br/>
+                  <h2 class="level">1</h2>
+                </div>
               </div>
             </div>
-          {% endfor %}
+          </div>
         </div>
         <button class="btn btn-dark article-add-link" name="access-to-add-link" data-toggle="modal" data-target="#add">
           <i class="fas fa-plus"></i>
