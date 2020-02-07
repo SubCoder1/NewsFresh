@@ -317,19 +317,59 @@ textarea {
 
 .user-details-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: nowrap;
 }
 
-.achievements-section {
+.achievements-section, .contribution-section {
     text-align: center;
     color: white;
+    width: 100%;
 }
 
-.level {
+.level, .contribution {
     color: #1d1d1d; 
     font-weight: bold; 
     font-size: 40px;
+}
+
+.accuracy-graph-wrapper {
+    display: flex;
+    position: sticky;
+    top: 350px;
+    padding: 1rem;
+    z-index: 1000;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 1rem;
+    background: #1d1d1d;
+    margin-top: 1rem;
+}
+
+.accuracy-meter-wrap {
+    width:100px;
+    margin-top:1rem;
+    margin-bottom:0.5rem;
+}
+
+.bad {
+    color: red;
+}
+
+.medium { 
+    color: orangered; 
+}
+
+.good {
+    color: mediumspringgreen;
+}
+
+.excellent {
+    color: springgreen;
 }
 
 /* ----------------------------------------------- */
@@ -475,7 +515,7 @@ textarea {
         margin-left: 0rem;
     }
 
-    .level {
+    .level, .contribution {
         font-size: 30px;
     }
 }

@@ -110,7 +110,23 @@
                   <br/>
                   <h2 class="level">1</h2>
                 </div>
+                <div class="contribution-section">
+                  Contributions
+                  <br/>
+                  <h2 class="contribution">10</h2>
+                </div>
               </div>
+            </div>
+            <div class="accuracy-graph-wrapper">
+              <div class="accuracy-meter-wrap" data-donutty
+              data-min=0
+              data-max=100
+              data-value=85
+              data-circle=false
+              data-color="mediumspringgreen" 
+              >80%</div>
+              Accuracy
+              <br/>
             </div>
           </div>
         </div>
@@ -148,6 +164,7 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{% static 'js/donutty-jquery.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>
