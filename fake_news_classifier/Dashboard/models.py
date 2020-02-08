@@ -21,7 +21,7 @@ class NewsModel(models.Model):
     fake = models.BooleanField(default=False)
     accuracy = models.FloatField(default=0.00)
     date_time = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1, related_name='news_posted')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1, related_name='news_posted')
     news_conn = models.OneToOneField(NewsVoteModel, on_delete=models.CASCADE, default=1, related_name='news_model')
     objects = models.Manager()
 
@@ -30,3 +30,12 @@ class NewsModel(models.Model):
 
     def __str__(self):
         return self.user.username + " " + str(self.date_time)
+
+class UserDataModel(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_details")
+    accuracy = models.FloatField(default=0.00)
+    contribution = models.IntegerField(default=0)
+    objects = models.Manager()
+
+    def __str__(self):
+        return str(self.user.username) + " DataModel"
