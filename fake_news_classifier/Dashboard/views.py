@@ -3,6 +3,10 @@ from django.template.loader import render_to_string
 from django.db import transaction
 from django.db.models import F
 from django.contrib.auth.models import User
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from Dashboard.serializers import FakeNewsAPISerializer
 from Dashboard.models import NewsModel, NewsVoteModel, UserDataModel
 import json, re, os, pickle
 import pandas as pd
@@ -134,3 +138,10 @@ def DashboardView(request):
     else:
         graph_bar_color = 'red'
     return render(request, 'dashboard.html', {'news':news, 'user_data':user_data_obj, 'graph_color':graph_bar_color})
+
+@api_view(['GET'])
+def process_news(request, url):
+    if request.method == 'GET':
+        news = NewsModel.objects.filter(news_link=str(url)).first()
+        serializer = FakeNewsAPISerializer(news)
+        return Response(serializer.data)
