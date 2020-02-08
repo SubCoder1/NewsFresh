@@ -33,7 +33,8 @@ class NewsModel(models.Model):
 
 class UserDataModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_details")
-    accuracy = models.FloatField(default=0.00)
+    accuracy = models.IntegerField(default=0)
+    accuracy_perc = models.FloatField(default=0.00)
     contribution = models.IntegerField(default=0)
     objects = models.Manager()
 
