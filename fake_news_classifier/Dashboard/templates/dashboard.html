@@ -31,7 +31,7 @@
             {% for n in news %}
               <div class="card post-card index-post-card">
                 {% if n.news_img_link %}
-                <div class="card-body" style="background-image: linear-gradient(rgba(80, 55, 174, 0.5),rgba(0, 0, 0, 0.5)), url({{n.news_img_link}});">
+                <div class="card-body" style="background-image: linear-gradient(rgb(26, 25, 25),rgba(0, 0, 0, 0.5)), url({{n.news_img_link}});">
                 {% else %}
                 <div class="card-body">
                 {% endif %}
@@ -58,35 +58,11 @@
                           <a href="#" name="show-news-report" data-toggle="modal" data-target="#report-{{n.news_id}}">
                             <i class="fas fa-skull-crossbones"></i>
                           </a>
-                          <div class="modal fade" id="report-{{n.news_id}}" tabindex="-1" role="dialog" aria-labelledby="report-title" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                              <div class="modal-content">
-                                <div class="modal-body" style="height: auto; text-align: center;">
-                                  <i class="fas pop-up fa-skull-crossbones"></i>
-                                  <br/>
-                                  The Probability of this news being fake is
-                                  <h2 style="color: mediumslateblue;">{{n.accuracy}}%</h2>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                           <h5 class="accuracy">{{ n.accuracy }}%</h5>
                         {% else %}
                           <a href="#" name="show-news-report" data-toggle="modal" data-target="#report-{{n.news_id}}">
                             <i class="far fa-check-circle"></i>
                           </a>
-                          <div class="modal fade" id="report-{{n.news_id}}" tabindex="-1" role="dialog" aria-labelledby="report-title" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                              <div class="modal-content">
-                                <div class="modal-body" style="height: auto; text-align: center;">
-                                  <i class="far pop-up fa-check-circle" style="font-size: 40px;"></i>
-                                  <br/>
-                                  The Probability of this news being real is
-                                  <h3 style="color: mediumspringgreen;">{{n.accuracy}}%</h3>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                           <h5 class="accuracy">{{ n.accuracy }}%</h5>
                         {% endif %}
                         {% csrf_token %}
@@ -113,20 +89,12 @@
                 <div class="contribution-section">
                   Contributions
                   <br/>
-                  <h2 class="contribution">10</h2>
+                  <h2 class="contribution">{{ user_data.contribution }}</h2>
                 </div>
               </div>
             </div>
             <div class="accuracy-graph-wrapper">
-              <div class="accuracy-meter-wrap" data-donutty
-              data-min=0
-              data-max=100
-              data-value=85
-              data-circle=false
-              data-color="mediumspringgreen" 
-              >80%</div>
-              Accuracy
-              <br/>
+              {% include 'accuracy-graph.html' %}
             </div>
           </div>
         </div>

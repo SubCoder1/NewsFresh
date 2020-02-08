@@ -30,9 +30,13 @@ $(document).ready(function() {
                 news_id : news_id,
             },
             complete : function(response) {
-                if (response.responseJSON == 'valid') {
+                console.log(response);
+                if (response.responseJSON['result'] == 'valid') {
                     var upvote_count = parseInt($upvote.siblings('.upvote').text(), 10) + 1;
                     $upvote.siblings('.upvote').text(upvote_count.toString());
+                    $upvote.siblings('.accuracy').text(response.responseJSON['probability']);
+                    $('.contribution').text(response.responseJSON['contribution']);
+                    $('.accuracy-graph-wrapper').html(response.responseJSON['user_accuracy']);
                 }
             }
         });
@@ -52,9 +56,13 @@ $(document).ready(function() {
                 news_id : news_id,
             },
             complete : function(response) {
-                if (response.responseJSON == 'valid') {
+                if (response.responseJSON['result'] == 'valid') {
+                    console.log(response.responseJSON['probability']);
                     var downvote_count = parseInt($downvote.siblings('.downvote').text(), 10) + 1;
                     $downvote.siblings('.downvote').text(downvote_count.toString());
+                    $downvote.siblings('.accuracy').text(response.responseJSON['probability']);
+                    $('.contribution').text(response.responseJSON['contribution']);
+                    $('.accuracy-graph-wrapper').html(response.responseJSON['user_accuracy']);
                 }
             }
         });
