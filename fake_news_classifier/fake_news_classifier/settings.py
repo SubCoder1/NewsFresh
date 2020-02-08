@@ -64,6 +64,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fake_news_classifier.wsgi.application'
 
+AUTH_PROFILE_MODULE = 'Dashboard.UserDataModel'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
