@@ -1,16 +1,15 @@
 from django.shortcuts import render, HttpResponse
+from django.template.loader import render_to_string
 from django.db import transaction
 from django.db.models import F
 from django.contrib.auth.models import User
-from Dashboard.models import NewsModel, NewsVoteModel
+from Dashboard.models import NewsModel, NewsVoteModel, UserDataModel
 import json, re, os, pickle
 import pandas as pd
 import numpy as np
 from newspaper import Article
 
-bow = pickle.load(open("./fake_news_classifier/bow.pkl", "rb"))
-model = pickle.load(open("./fake_news_classifier/model.pkl", "rb"))
-
+model = pickle.load(open('./fake_news_classifier/final_model.sav', 'rb'))
 # Used by bow pickle file
 def clean_article(article):
     art = re.sub("[^A-Za-z0-9' ]", '', str(article))
@@ -21,19 +20,13 @@ def clean_article(article):
 def classify(news_id):
     news_model_obj = NewsModel.objects.filter(news_id=news_id).first()
     news_vote_obj = news_model_obj.news_conn
-    list_comment = [news_model_obj.news]
-
-    list_comment = clean_article(list_comment)
-    list_comment = [list_comment]
-    vect = bow.transform(list_comment)
-
-    vect = pd.DataFrame(vect.toarray())
-    vect.columns = bow.get_feature_names()
-
-    prediction_array = model.predict(vect)
-    proba_array = model.predict_proba(vect)
-
-    maxProba = np.amax(proba_array)
+    
+    var = news_model_obj.news
+    prediction_array = model.predict([var])
+    prediction_array = prediction_array[0]
+    maxProba = float(model.predict_proba([var])[0][1])
+    print(maxProba)
+    print(prediction_array)
     
     total_votes = (news_vote_obj.upvote_count + news_vote_obj.downvote_count)
     vote_ratio_1, vote_ratio_2 = None, None
@@ -41,12 +34,10 @@ def classify(news_id):
         if news_vote_obj.upvote_count > news_vote_obj.downvote_count:
             vote_ratio_1 = (news_vote_obj.upvote_count / total_votes) * 100
             maxProba = (maxProba + vote_ratio_1) / 2
-            print(vote_ratio_1)
         else:
             vote_ratio_2 = (news_vote_obj.downvote_count / total_votes) * 100
             maxProba = (maxProba + vote_ratio_2) / 2
-            print(vote_ratio_2)
-    if 0 in prediction_array:
+    if prediction_array:
         #print("this story is real")
         news_model_obj.fake = False
     else:
@@ -55,6 +46,9 @@ def classify(news_id):
                 
     news_model_obj.accuracy = float(str("{0:.2f}".format(maxProba)).replace('%', ''))
     news_model_obj.save()
+    news_model_obj.refresh_from_db()
+    return news_model_obj.accuracy
+
 # Create your views here.
 def DashboardView(request):
     if request.POST.get('news_link', None) is not None:
@@ -79,23 +73,64 @@ def DashboardView(request):
     if request.is_ajax():
         activity = request.POST.get('activity')
         news_id = request.POST.get('news_id')
-        result = None
+        result, vote = None, None
         if activity == 'upvote':
             with transaction.atomic():
                 news_model_obj = NewsModel.objects.filter(news_id=news_id).select_for_update().first()
                 news_vote_obj = news_model_obj.news_conn
                 news_vote_obj.upvote_count = F('upvote_count') + 1
-                result = 'valid'
+                result, vote = 'valid', 'upvoted'
         elif activity == 'downvote':
             with transaction.atomic():
                 news_model_obj = NewsModel.objects.filter(news_id=news_id).select_for_update().first()
                 news_vote_obj = news_model_obj.news_conn
                 news_vote_obj.downvote_count = F('downvote_count') + 1
-                result = 'valid'
+                result, vote = 'valid', 'downvoted'
         
         news_vote_obj.save()
         news_model_obj = NewsModel.objects.filter(news_id=news_id).first()
-        classify(news_id=news_model_obj.news_id)
-        return HttpResponse(json.dumps(result), content_type="application/json")
+        probability = classify(news_id=news_model_obj.news_id)
+
+        user = User.objects.first()
+        user_data_obj = UserDataModel.objects.filter(user=user).first()
+        user_data_obj.contribution = F('contribution') + 1
+
+        if news_model_obj.fake and vote == 'upvoted' and user_data_obj.accuracy > 0:
+            user_data_obj.accuracy = F('accuracy') - 1
+        elif not news_model_obj.fake and vote == 'downvoted' and user_data_obj.accuracy > 0:
+            user_data_obj.accuracy = F('accuracy') - 1
+        else:
+            user_data_obj.accuracy = F('accuracy') + 1
+        user_data_obj.save()
+        user_data_obj.refresh_from_db()
+        user_data_obj.accuracy_perc = "{0:.2f}".format((user_data_obj.accuracy / user_data_obj.contribution) * 100)
+        user_data_obj.save()
+        user_data_obj.refresh_from_db()
+        graph_bar_color = None
+        if user_data_obj.accuracy_perc >= 85:
+            graph_bar_color = 'springgreen'
+        elif user_data_obj.accuracy_perc >= 65:
+            graph_bar_color = 'mediumspringgreen'
+        elif user_data_obj.accuracy_perc >= 35:
+            graph_bar_color = 'orangered'
+        else:
+            graph_bar_color = 'red'
+
+        return HttpResponse(json.dumps({'result':result, 
+        'probability':str(probability) + "%", 'contribution':user_data_obj.contribution,
+        'user_accuracy':render_to_string('accuracy-graph.html', {'user_data':user_data_obj, 'graph_color':graph_bar_color})}), 
+        content_type="application/json")
+        
     news = NewsModel.objects.select_related('news_conn')
-    return render(request, 'dashboard.html', {'news':news})
+    user = User.objects.first()
+    user_data_obj = UserDataModel.objects.filter(user=user).first()
+    graph_bar_color = None
+    if float(user_data_obj.accuracy_perc) >= 85:
+        graph_bar_color = 'springgreen'
+    elif user_data_obj.accuracy_perc >= 65:
+        graph_bar_color = 'mediumspringgreen'
+    elif user_data_obj.accuracy_perc >= 35:
+        graph_bar_color = 'orangered'
+    else:
+        graph_bar_color = 'red'
+    return render(request, 'dashboard.html', {'news':news, 'user_data':user_data_obj, 'graph_color':graph_bar_color})
