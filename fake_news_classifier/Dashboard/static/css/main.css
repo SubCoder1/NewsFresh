@@ -266,6 +266,18 @@ textarea {
     transform: scale(1.2);
 }
 
+.fa-link {
+    font-size: 21px;
+    margin-right: 0.8rem;
+    color: magenta;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.fa-link:hover {
+    transform: scale(1.2);
+}
+
 .fa-frown {
     color: #ff9b00;
     transition: all 0.3s;
@@ -354,22 +366,6 @@ textarea {
     width:100px;
     margin-top:1rem;
     margin-bottom:0.5rem;
-}
-
-.bad {
-    color: red;
-}
-
-.medium { 
-    color: orangered; 
-}
-
-.good {
-    color: mediumspringgreen;
-}
-
-.excellent {
-    color: springgreen;
 }
 
 /* ----------------------------------------------- */
