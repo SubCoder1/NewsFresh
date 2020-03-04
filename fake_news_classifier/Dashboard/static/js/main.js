@@ -41,7 +41,7 @@ $(document).ready(function() {
         });
     });
 
-    // JS code to send downvote for a specific news
+    // JS code to send downvote for specific news
     $('.fa-frown').on('click', function(event) {
         event.preventDefault();
         var $downvote = $(this);
@@ -61,6 +61,28 @@ $(document).ready(function() {
                     $downvote.siblings('.downvote').text(downvote_count.toString());
                     $downvote.siblings('.accuracy').text(response.responseJSON['probability']);
                     $('.contribution').text(response.responseJSON['contribution']);
+                }
+            }
+        });
+    });
+
+    // JS code to send a GET of related articles for specific news
+    $('.fa-globe-americas').on('click', function(event) {
+        event.preventDefault();
+        var news_id = $(this).parent().attr('id');
+        $.ajax({
+            url : '',
+            type : 'POST',
+            data : {
+                csrfmiddlewaretoken : csrftoken,
+                activity : 'get_related_articles',
+                news_id : news_id,
+            },
+            complete : function(response) {
+                if (response.responseJSON['result'] == 'valid') {
+                    var related_news_body_id = '#related_news_body-' + news_id;
+                    console.log(related_news_body_id);
+                    $(related_news_body_id).html(response.responseJSON['related_news']);
                 }
             }
         });

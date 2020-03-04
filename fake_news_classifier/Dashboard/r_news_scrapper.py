@@ -48,16 +48,15 @@ def google_search(title, url):
         if "youtube" not in i and domain not in i:
             source_sites.append(urlparse(i).hostname)
             search_urls.append(i)
-            article = Article(i)
+            """article = Article(i)
             try:
                 article.download()
                 article.parse()
             except:
                 pass
-            title = article.title
-            search_title.append(title)
+            title = article.title"""
 
-    return search_urls, search_title, source_sites
+    return search_urls, source_sites
 
 def similarity(url_list, article):
     article = article
@@ -99,9 +98,9 @@ def similarity(url_list, article):
 def handlelink(article_link):
 
     #loads the  models
-    job_cv = joblib.load('static/models/cv.pkl')
-    job_pac = joblib.load('static/models/pac.pkl')
-    job_vec = joblib.load('static/models/tfv.pkl')
+    job_cv = joblib.load('Dashboard/static/models/cv.pkl')
+    job_pac = joblib.load('Dashboard/static/models/pac.pkl')
+    job_vec = joblib.load('Dashboard/static/models/tfv.pkl')
     url = (article_link)
 
     #extracts the article and title from the url
@@ -112,10 +111,13 @@ def handlelink(article_link):
     print("Target article has been classified")
 
     return pred, article_title, article, url
+    #return article_title, article, url
 
 if __name__ == "__main__":
     #gets all the variables needed by executing the functions above
     prediction, article_title, article, url = handlelink(article_link='https://techcrunch.com/2020/03/03/smartnews-local-news-feature-now-covers-more-than-6000-u-s-cities/')
+    #article_title, article, url = handlelink(article_link='https://techcrunch.com/2020/03/03/smartnews-local-news-feature-now-covers-more-than-6000-u-s-cities/')
     url_list, search_titles, sitename = google_search(article_title, url)
-    print(url_list)
-    """similarity_score, avgScore = similarity(url_list, article)"""
+    print(search_titles)
+    similarity_score, avgScore = similarity(url_list, article)
+    

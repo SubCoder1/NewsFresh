@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from Dashboard.serializers import FakeNewsAPISerializer
 from Dashboard.models import NewsModel, NewsVoteModel, UserDataModel
+from Dashboard.r_news_scrapper import handlelink, google_search, similarity
 import json, re, os, pickle
 import pandas as pd
 import numpy as np
@@ -90,6 +91,19 @@ def DashboardView(request):
                 news_vote_obj = news_model_obj.news_conn
                 news_vote_obj.downvote_count = F('downvote_count') + 1
                 result, vote = 'valid', 'downvoted'
+        elif activity == 'get_related_articles':
+            news_model_obj = NewsModel.objects.filter(news_id=news_id).first()
+            prediction, article_title, article, url = handlelink(article_link=news_model_obj.news_link)
+            #url_list, search_titles, sitename = google_search(article_title, url)
+            url_list, sitename = google_search(article_title, url)
+            print(url_list)
+            similarity_score, avgScore = similarity(url_list, article)
+            print(similarity_score)
+            
+            return HttpResponse(json.dumps({
+                'result': 'valid',
+                'related_news': render_to_string('related_news.html', context={'related_news':url_list})}), 
+                content_type="application/json")
         
         news_vote_obj.save()
         news_model_obj = NewsModel.objects.filter(news_id=news_id).first()
@@ -120,6 +134,8 @@ def DashboardView(request):
     user_data_obj = UserDataModel.objects.filter(user=user).first()
 
     return render(request, 'dashboard.html', {'news':news, 'user_data':user_data_obj})
+
+# ------------------------- API --------------------------
 
 @api_view(['GET'])
 def process_news(request, url):

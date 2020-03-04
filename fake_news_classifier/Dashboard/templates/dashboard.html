@@ -62,7 +62,8 @@
                                   <span aria-hidden="true">×</span>
                                 </a>
                               </div>
-                              <div class="modal-body">
+                              <div class="modal-body" id="related_news_body-{{n.news_id}}" style="display: flex;">
+                                {% include 'related_news.html' %}
                               </div>
                             </div>
                           </div>
