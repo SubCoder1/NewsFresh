@@ -79,21 +79,32 @@
             <div class="prof-wrap-sticky">
               <img src="/static/img/default.png" alt="default_prof_pic" class="rounded-circle profile-img"/>
               <h4 class="profile-name">Arnab Ghosh</h4>
+              <div class="headline-border" style="position: relative; left: 150px; margin-bottom: 1rem;"></div>
               <div class="user-details-wrapper">
                 <div class="achievements-section">
-                  Level
+                  <i class="fas fa-chart-area"></i>
                   <br/>
-                  <h2 class="level">1</h2>
+                  {% if user_data.accuracy_perc == 0.0 %}
+                    <h2 class="level">--</h2>
+                  {% elif user_data.accuracy_perc >= 85 %}
+                    <h2 class="level" style="color: aquamarine;">Excellent</h2>
+                  {% elif user_data.accuracy_perc >= 65 %}
+                    <h2 class="level" style="color: mediumaquamarine;">Good</h2>
+                  {% elif user_data.accuracy_perc >= 35 %}
+                    <h2 class="level" style="color: orange">Average</h2>
+                  {% else %}
+                    <h2 class="level" style="color: orangered;">Bad</h2>
+                  {% endif %}
                 </div>
                 <div class="contribution-section">
-                  Contributions
+                  <i class="fas fa-smile"></i>
+                  <strong style="color: black; font-size: 20px;">/</strong> 
+                  <i class="fas fa-frown"></i>
                   <br/>
                   <h2 class="contribution">{{ user_data.contribution }}</h2>
                 </div>
               </div>
-            </div>
-            <div class="accuracy-graph-wrapper">
-              {% include 'accuracy-graph.html' %}
+              
             </div>
           </div>
         </div>
@@ -131,7 +142,6 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="{% static 'js/donutty-jquery.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

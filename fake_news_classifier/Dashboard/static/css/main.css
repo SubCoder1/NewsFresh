@@ -225,6 +225,17 @@ textarea {
     font-weight: 500;
 }
 
+.fa-chart-area {
+    font-size: 24px;
+    color: palegreen;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.fa-chart-area:hover {
+    transform: scale(1.2);
+}
+
 .fa-skull-crossbones {
     font-size: 25px;
     color: black;
@@ -342,7 +353,7 @@ textarea {
 .level, .contribution {
     color: #1d1d1d; 
     font-weight: bold; 
-    font-size: 40px;
+    font-size: 25px;
 }
 
 .accuracy-graph-wrapper {
