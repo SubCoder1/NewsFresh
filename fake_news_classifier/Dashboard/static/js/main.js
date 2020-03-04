@@ -65,4 +65,13 @@ $(document).ready(function() {
             }
         });
     });
+
+    var $coin_logo = $('.newsfresh-coin-logo');
+    setInterval(function() { 
+        if ($coin_logo.css('transform') == 'matrix(-1, 1.22465e-16, -1.22465e-16, -1, 0, 0)') {
+            $coin_logo.css('transform', 'rotate(0deg)');
+        } else {
+            $coin_logo.css('transform', 'rotate(180deg)');
+        }
+     }, 2800);
 });

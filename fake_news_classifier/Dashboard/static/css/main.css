@@ -356,7 +356,7 @@ textarea {
     font-size: 25px;
 }
 
-.accuracy-graph-wrapper {
+.user-acc-coins-wrapper {
     display: flex;
     position: sticky;
     top: 350px;
@@ -369,16 +369,34 @@ textarea {
     align-items: center;
     color: white;
     border-radius: 1rem;
-    background: #1d1d1d;
+    background: black;
     margin-top: 1rem;
 }
 
-.accuracy-meter-wrap {
-    width:100px;
-    margin-top:1rem;
-    margin-bottom:0.5rem;
+.newsfresh-coin-logo {
+    height: 60px;
+    margin-bottom: 1rem;
+    position: relative;
+    transition: all 0.3s;
 }
 
+.rotate-coin-logo {
+    transform: rotate(180deg);
+}
+
+.coin-redeem-btn {
+    width: 98px;
+    height: 40px;
+    background: transparent;
+    border: 1.2px solid #6a29f2;
+    border-radius: 2rem;
+}
+
+.coin-redeem-btn:hover, .coin-redeem-btn:focus {
+    background: #6a29f2;
+    border: 1.2px solid #6a29f2;
+    color: white;
+}
 /* ----------------------------------------------- */
 
 /* ----------------- article-add-ico ------------------- */
