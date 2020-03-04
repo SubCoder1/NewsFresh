@@ -1,0 +1,130 @@
+{% extends "bootstrap/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+{% block head%}
+<head>
+  <meta charset="utf-8">
+  <title>Fake News Detector</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <link href="{{url_for('.static', filename='globe.ico')}}" rel="icon">
+  <link href="{{url_for('.static', filename='style.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{url_for('.static', filename='lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{url_for('.static', filename='lib/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{url_for('.static', filename='lib/animate/animate.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+
+</head>
+{%endblock%}
+
+{%block body%}
+<body>
+
+  <!--==========================
+  Header
+  ============================-->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="/">Fake News Detector</a></h1>
+      </div>
+
+      {%block navbar%}
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li><a href="/">Home</a></li>
+          <li class="menu-active"><a href="#result">Result</a></li>
+          <li> <a href="#inputarticle">Input Article</a> </li>
+
+
+        </ul>
+      </nav>
+      {%endblock%}
+
+
+    </div>
+  </header><!-- #header -->
+
+  <section id="hero">
+    <div class="hero-container">
+      <br>
+      <br>
+      <br><br><br>
+      <h1  id="result">Result</h1>
+      <strong><h2>{{variable}}</h2> </strong>
+
+      <form action="{{url_for('linkResult')}}" method="post" >
+         <div class="form-inline">
+         <div class="form-group">
+            <input type="url" required class="form-control" name="article_link"  placeholder="Analyse another article" style="width:425px;">
+            <input type="submit" class="input-group-addon btn btn-secondary" value="Analyse" >
+         </div>
+      </div>
+      </form>
+      <form action="{{url_for('textResult')}}" method="post">
+      <div class="form-group shadow-textarea" >
+        <label for="textarea"></label>
+        <textarea class="form-control z-depth-1" required id="textarea" name ="article_text"rows="4" placeholder="or enter article body here" style="width:500px;"></textarea>
+         <input type="submit" class="input-group-addon btn btn-secondary"value="Analyse" >
+      </div>
+
+
+
+
+    </div>
+  </section>
+
+  <section id="inputarticle">
+     <div class="container wow fadeIn">
+        <div class="section-header">
+           <h3 class ="section-title"> Input Article Text</h3>
+
+                  <p class=section-description>{{articletext[0]}}</p>
+
+
+        </div>
+     </div>
+  </section>
+
+  <main id="main">
+
+    <!--About Section-->
+    <section id="about">
+      <div class="container">
+        <div class="row about-container">
+
+
+
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+ {%block scripts%}
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.hoverintent/1.10.0/jquery.hoverIntent.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/superfish/1.7.10/js/superfish.min.js"></script>
+   <script src="https://rawgit.com/shaneapen/Image-Preview-for-Links/master/image_preview_for_links.js"></script>
+
+
+  <!-- Template Main Javascript File -->
+  <script src="{{url_for('.static', filename='main.js')}}"></script>
+{%endblock%}
+
+</body>
+{%endblock%}
+</html>
