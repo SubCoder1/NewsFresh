@@ -110,34 +110,16 @@ def DashboardView(request):
         user_data_obj.accuracy_perc = "{0:.2f}".format((user_data_obj.accuracy / user_data_obj.contribution) * 100)
         user_data_obj.save()
         user_data_obj.refresh_from_db()
-        graph_bar_color = None
-        if user_data_obj.accuracy_perc >= 85:
-            graph_bar_color = 'springgreen'
-        elif user_data_obj.accuracy_perc >= 65:
-            graph_bar_color = 'mediumspringgreen'
-        elif user_data_obj.accuracy_perc >= 35:
-            graph_bar_color = 'orangered'
-        else:
-            graph_bar_color = 'red'
 
         return HttpResponse(json.dumps({'result':result, 
-        'probability':str(probability) + "%", 'contribution':user_data_obj.contribution,
-        'user_accuracy':render_to_string('accuracy-graph.html', {'user_data':user_data_obj, 'graph_color':graph_bar_color})}), 
+        'probability':str(probability) + "%", 'contribution':user_data_obj.contribution}), 
         content_type="application/json")
         
     news = NewsModel.objects.select_related('news_conn')
     user = User.objects.first()
     user_data_obj = UserDataModel.objects.filter(user=user).first()
-    graph_bar_color = None
-    if float(user_data_obj.accuracy_perc) >= 85:
-        graph_bar_color = 'springgreen'
-    elif user_data_obj.accuracy_perc >= 65:
-        graph_bar_color = 'mediumspringgreen'
-    elif user_data_obj.accuracy_perc >= 35:
-        graph_bar_color = 'orangered'
-    else:
-        graph_bar_color = 'red'
-    return render(request, 'dashboard.html', {'news':news, 'user_data':user_data_obj, 'graph_color':graph_bar_color})
+
+    return render(request, 'dashboard.html', {'news':news, 'user_data':user_data_obj})
 
 @api_view(['GET'])
 def process_news(request, url):
