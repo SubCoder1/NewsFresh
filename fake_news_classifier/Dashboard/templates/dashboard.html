@@ -52,6 +52,21 @@
                           </div>
                       </div>
                       <div class="upvote-downvote-wrapper" id={{n.news_id}}>
+                        <i class="fas fa-globe-americas" name="access-to-related-news" data-toggle="modal" data-target="#related_news-{{n.news_id}}"></i>
+                        <div class="modal fade" id="related_news-{{n.news_id}}" tabindex="-1" role="dialog" aria-labelledby="add-title" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5>Related Articles</h5>
+                                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">×</span>
+                                </a>
+                              </div>
+                              <div class="modal-body">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <a href={{n.news_link}} target="_blank"><i class="fas fa-link"></i></a>
                         {% if n.fake %}
                           <a href="#" name="show-news-report" data-toggle="modal" data-target="#report-{{n.news_id}}">

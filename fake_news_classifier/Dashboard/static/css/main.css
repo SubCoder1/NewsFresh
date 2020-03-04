@@ -285,7 +285,15 @@ textarea {
     cursor: pointer;
 }
 
-.fa-link:hover {
+.fa-globe-americas {
+    font-size: 21px;
+    margin-right: 0.8rem;
+    color: #f2be90;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.fa-link:hover, .fa-globe-americas:hover {
     transform: scale(1.2);
 }
 
