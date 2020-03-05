@@ -7,3 +7,4 @@ numpy
 sklearn
 nltk
 newspaper3k
+google
