@@ -13,6 +13,7 @@ import json, re, os, pickle
 import pandas as pd
 import numpy as np
 from newspaper import Article
+from collections import namedtuple
 
 model = pickle.load(open('./fake_news_classifier/final_model.sav', 'rb'))
 # Used by bow pickle file
@@ -99,10 +100,16 @@ def DashboardView(request):
             print(url_list)
             similarity_score, avgScore = similarity(url_list, article)
             print(similarity_score)
-            
+
+            news = namedtuple('news', ['news_link', 'similarity_score'])
+            related_news = []
+            for i in range(len(url_list)):
+                if '0.' not in similarity_score[i]:
+                    related_news.append(news(url_list[i], round(float(similarity_score[i]))))
+
             return HttpResponse(json.dumps({
                 'result': 'valid',
-                'related_news': render_to_string('related_news.html', context={'related_news':url_list})}), 
+                'related_news': render_to_string('related_news.html', context={'related_news':related_news})}), 
                 content_type="application/json")
         
         news_vote_obj.save()
