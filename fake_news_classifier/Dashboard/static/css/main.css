@@ -483,6 +483,7 @@ textarea {
 .modal-body {
     height: 400px;
     overflow-x: auto;
+    padding: 0rem;
 }
 
 .modal-loading-gif {
@@ -493,6 +494,7 @@ textarea {
 
 .loading-gif-active {
     display: block;
+
 }
 
 .modal-body::-webkit-scrollbar {
