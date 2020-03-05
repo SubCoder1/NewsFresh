@@ -1,19 +1,24 @@
-from django.shortcuts import render, HttpResponse
-from django.template.loader import render_to_string
+import json
+import os
+import pickle
+import re
+from collections import namedtuple
+
+import numpy as np
+import pandas as pd
+from django.contrib.auth.models import User
 from django.db import transaction
 from django.db.models import F
-from django.contrib.auth.models import User
+from django.shortcuts import HttpResponse, render
+from django.template.loader import render_to_string
+from newspaper import Article
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from Dashboard.serializers import FakeNewsAPISerializer
+
 from Dashboard.models import NewsModel, NewsVoteModel, UserDataModel
-from Dashboard.r_news_scrapper import handlelink, google_search, similarity
-import json, re, os, pickle
-import pandas as pd
-import numpy as np
-from newspaper import Article
-from collections import namedtuple
+from Dashboard.r_news_scrapper import google_search, handlelink, similarity
+from Dashboard.serializers import FakeNewsAPISerializer
 
 model = pickle.load(open('./fake_news_classifier/final_model.sav', 'rb'))
 # Used by bow pickle file
@@ -122,10 +127,14 @@ def DashboardView(request):
 
         if news_model_obj.fake and vote == 'upvoted' and user_data_obj.accuracy > 0:
             user_data_obj.accuracy = F('accuracy') - 1
+            user_data_obj.currency = F('currency') - 1 if user_data_obj.currency > 1 else F('currency')
         elif not news_model_obj.fake and vote == 'downvoted' and user_data_obj.accuracy > 0:
             user_data_obj.accuracy = F('accuracy') - 1
+            user_data_obj.currency = F('currency') - 1 if user_data_obj.currency > 1 else F('currency')
         else:
             user_data_obj.accuracy = F('accuracy') + 1
+            user_data_obj.currency = F('currency') + 1
+
         user_data_obj.save()
         user_data_obj.refresh_from_db()
         user_data_obj.accuracy_perc = "{0:.2f}".format((user_data_obj.accuracy / user_data_obj.contribution) * 100)
@@ -133,7 +142,8 @@ def DashboardView(request):
         user_data_obj.refresh_from_db()
 
         return HttpResponse(json.dumps({'result':result, 
-        'probability':str(probability) + "%", 'contribution':user_data_obj.contribution}), 
+        'probability':str(probability) + "%", 'contribution':user_data_obj.contribution, 
+        'coins': user_data_obj.currency}),
         content_type="application/json")
         
     news = NewsModel.objects.select_related('news_conn')

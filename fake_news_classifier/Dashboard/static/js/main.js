@@ -36,6 +36,7 @@ $(document).ready(function() {
                     $upvote.siblings('.upvote').text(upvote_count.toString());
                     $upvote.siblings('.accuracy').text(response.responseJSON['probability']);
                     $('.contribution').text(response.responseJSON['contribution']);
+                    $('.user-coins-count').text(response.responseJSON['coins']);
                 }
             }
         });
@@ -61,6 +62,7 @@ $(document).ready(function() {
                     $downvote.siblings('.downvote').text(downvote_count.toString());
                     $downvote.siblings('.accuracy').text(response.responseJSON['probability']);
                     $('.contribution').text(response.responseJSON['contribution']);
+                    $('.user-coins-count').text(response.responseJSON['coins']);
                 }
             }
         });
