@@ -25,6 +25,8 @@ For Windows ->
 For Linux ->
 ```source ./env/bin/activate```
 
+In case of virtualenv disability issues in windows, use ```Set-ExecutionPolicy Unrestricted -Force``` command in PowerShell (admin-mode)
+
 Next, use this command ```pip install -r requirements.txt``` to install all the dependencies required for this project to run properly.
 After this process is finished, use command ```python``` or ```python3``` to open python CLI in the terminal & then enter this 2 lines to install nltk package :-
 ```
