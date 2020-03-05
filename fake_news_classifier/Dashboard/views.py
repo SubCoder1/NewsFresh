@@ -54,7 +54,8 @@ def classify(news_id):
     else:
         #print("this story is fake")
         news_model_obj.fake = True
-                
+    
+    maxProba = float(maxProba) * 100 if float(maxProba) < 1 else float(maxProba)
     news_model_obj.accuracy = float(str("{0:.2f}".format(maxProba)).replace('%', ''))
     news_model_obj.save()
     news_model_obj.refresh_from_db()
