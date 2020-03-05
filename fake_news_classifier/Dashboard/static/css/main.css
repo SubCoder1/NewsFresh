@@ -485,6 +485,20 @@ textarea {
     overflow-x: auto;
 }
 
+.modal-loading-gif {
+    max-width: 100%;
+    height: 335px;
+    display: none;
+}
+
+.loading-gif-active {
+    display: block;
+}
+
+.modal-body::-webkit-scrollbar {
+    display: none;
+}
+
 .modal-header {
     border: none;
     padding: 1rem 1rem 0.5rem 1rem;

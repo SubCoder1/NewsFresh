@@ -1,6 +1,7 @@
 <div class="related-news-wrapper">
     {% for n in related_news %}
         <a href="{{n.news_link}}">{{n.news_link}}</a>
+        <div class="headline-border" style="margin-top: 0.6rem;margin-bottom: 1rem;border: 1.2px solid mediumpurple;"></div>
         <h5 style="font-size: 15px;">Similarity -> {{ n.similarity_score }}%</h5>
         <br/>
     {% endfor %}
