@@ -5,7 +5,7 @@ import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.externals import joblib
+import joblib
 from sklearn.model_selection import train_test_split
 import re
 from googlesearch import search
