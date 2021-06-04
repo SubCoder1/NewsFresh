@@ -396,7 +396,7 @@ textarea {
     width: 98px;
     height: 40px;
     background: transparent;
-    border: 1.2px solid #6a29f2;
+    border: 2px solid #6a29f2;
     border-radius: 2rem;
 }
 
@@ -509,6 +509,7 @@ textarea {
 .modal-footer {
     justify-content: center;
     border-top: none;
+    padding-top: 1rem;
 }
 
 .headline {
@@ -540,7 +541,10 @@ textarea {
     border-bottom: 2px solid mediumslateblue;
 }
 
-.form-group { height: 280px; }
+.form-group { 
+    height: 280px;
+    padding: 1rem;
+}
 
 .article-post-btn {
     width: 85px;
