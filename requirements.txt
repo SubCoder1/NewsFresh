@@ -4,7 +4,8 @@ Pillow
 django-extensions
 pandas
 numpy
-sklearn
+scikit-learn==0.22.1
 nltk
 newspaper3k
 google
+djangorestframework
