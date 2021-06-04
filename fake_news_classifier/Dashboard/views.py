@@ -151,7 +151,7 @@ def DashboardView(request):
     user = User.objects.first()
     user_data_obj = UserDataModel.objects.filter(user=user).first()
 
-    return render(request, 'dashboard.html', {'news':news, 'user_data':user_data_obj})
+    return render(request, 'dashboard.html', {'news':news, 'user_data':user_data_obj, 'user': user})
 
 # ------------------------- API --------------------------
 
