@@ -116,3 +116,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Fix for Auto-created primary key issue (Django 3.1+)
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
